@@ -1,0 +1,60 @@
+  <div>
+    <mat-form-field appearance="fill">
+        <mat-label>genre1</mat-label>
+        <mat-select [(ngModel)]="genre1" (ngModelChange)="updateData()" name="genre1">
+          <mat-option *ngFor="let genre of genres1" [value]="genre">
+            {{genre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>genre2</mat-label>
+        <mat-select [(ngModel)]="genre2" (ngModelChange)="updateData()" name="genre2">
+          <mat-option *ngFor="let genre of genres2" [value]="genre">
+            {{genre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>year</mat-label>
+        <mat-select [(ngModel)]="year" (ngModelChange)="updateData()" name="year">
+          <mat-option *ngFor="let yearItem of years" [value]="yearItem">
+            {{yearItem}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="genre1">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> genre1 </th>
+        <td mat-cell *matCellDef="let row"> {{row.genre1}} </td>
+      </ng-container>
+      <ng-container matColumnDef="genre2">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> genre2 </th>
+        <td mat-cell *matCellDef="let row"> {{row.genre2}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> year </th>
+        <td mat-cell *matCellDef="let row"> {{row.year}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter </td>
+      </tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of films"></mat-paginator>
+  </div>
